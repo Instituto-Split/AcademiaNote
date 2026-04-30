@@ -375,7 +375,7 @@ if($DEBUG) {
 # 4) Download e instalação do Python 2.7
 $pythonInstall = "C:\Python27\python.exe"
 if(-Not (Test-Path "$pythonInstall")){
-    Download-Python "https://www.python.org/ftp/python/2.7.18/python-2.7.18.msi"
+    Download-Python "https://www.python.org/ftp/python/2.7.18/python-2.7.18.amd64.msi"
 } else {
     Write-Host "Python 2.7 já instalado. Pulando essa etapa."
 }
