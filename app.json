@@ -1,8 +1,8 @@
 {
   "credits": "@ 2025 Birdo Filmes em Animacao LTDA",
   "name": "BirdoApp",
-  "release": "BirdoApp.1.3",
-  "release_date": "29 de Janeiro de 2026",
-  "release_notes": "Versao de lancamento do BirdoApp. (com melhoria no modo --produtor)",
+  "release": "BirdoApp.1.4",
+  "release_date": "02 de Maio de 2026",
+  "release_notes": "Versao de lancamento do BirdoApp. (algumas melhorias no render e saveASSET)",
   "repository": "BirdoOrg/BirdoApp"
 }
