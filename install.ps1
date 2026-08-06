@@ -9,7 +9,7 @@ $GUM_FILE_MATCH    = "^gum_\d+\.\d+\.\d+_Windows_x86_64.zip$"
 $FFMPEG_REPO       = "BtbN/FFmpeg-Builds"
 $FFMPEG_FILE_MATCH = "^ffmpeg-master-latest-win64-gpl.zip$"
 
-$BIRDOAPP_REPO     = "BirdoOrg/BirdoApp"
+$ACADEMIANOTE_REPO     = "Instituto-Split/AcademiaNote"
 
 ####################
 
@@ -243,22 +243,20 @@ function Install-Shortcut {
 }
 
 $greetings = "
-╔══════════════════════════════════════════════════════════════════════╗
-║                                                                      ║
-║    ██████╗ ██╗██████╗ ██████╗  ██████╗     █████╗ ██████╗ ██████╗    ║
-║    ██╔══██╗██║██╔══██╗██╔══██╗██╔═══██╗   ██╔══██╗██╔══██╗██╔══██╗   ║
-║    ██████╔╝██║██████╔╝██║  ██║██║   ██║   ███████║██████╔╝██████╔╝   ║
-║    ██╔══██╗██║██╔══██╗██║  ██║██║   ██║   ██╔══██║██╔═══╝ ██╔═══╝    ║
-║    ██████╔╝██║██║  ██║██████╔╝╚██████╔╝   ██║  ██║██║     ██║        ║
-║    ╚═════╝ ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝    ╚═╝  ╚═╝╚═╝     ╚═╝        ║
-║                                                                      ║
-║                     ASSISTENTE   DE   INSTALAÇÃO                     ║
-║                                                                      ║
-╚══════════════════════════════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════════════════════╗
+║     ___                  __               _       _   __      __      ║
+║    /   | ____ ____ _____/ /__  ____ ___  (_)___  / | / /___  / / ___  ║
+║   / /| |/ ___/ __ `/ __  / _ \/ __ `__ \/ / __ `/  |/ / __ \/ __/ _ \ ║
+║  / ___ / /__/ /_/ / /_/ /  __/ / / / / / / /_/ / /|  / /_/ / /_/  __/ ║
+║ /_/  |_\___/\__,_/\__,_/\___/_/ /_/ /_/_/\__,_/_/ |_/\____/\__/\___/  ║
+║                                                                       ║
+║                     ASSISTENTE   DE   INSTALAÇÃO                      ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
 
-   Bem vindo ao assistente de instalação do BirdoApp, um conjunto
-   de scripts e programas que auxiliam produções de animações 2D.
-   Pressione ENTER para continuar."
+   Bem vindo ao assistente de instalação do Academia Note, um conjunto
+   de scripts e programas que auxiliam a pipeline em projetos de anima-
+   ção 2D. Pressione ENTER para continuar."
 
 # FIXME cachear gum?
 if ((get-item $env:temp\gum.zip 2> $null) -ne $null) {
@@ -344,27 +342,27 @@ while($true){
 cls
 
 if (-not $agree) {
-    echo "`nO BirdoApp NÃO foi instalado. Encerrando..."
+    echo "`nO Academia Note NÃO foi instalado. Encerrando..."
     exit
 }
 
 echo "`n   As seguintes etapas serao executadas:`n"
 $instalationSteps = @"
-1) Downloads dos arquivos do BirdoApp
-2) Cópia Do BirdoApp para pasta %APPDATA%
+1) Downloads dos arquivos do Academia Note
+2) Cópia do Academia Note para pasta %APPDATA%
 3) Download do programa Ffmpeg
 4) Download e instalação do Python 2.7
 5) Criação de um ambiente virtual Python
 6) Instalação das dependências
 7) Criação de variáveis de ambiente
-8) Atalho do BirdoApp na Área de Trabalho
+8) Atalho do Academia Note na Área de Trabalho
 "@
 & $gum style --border=double --width=56 --margin="-1 0" --align=left --padding="1 5" $instalationSteps
 
 $LastUserResponse = AskYesNo "Está de acordo com as ações listadas acima? (S/N)"
 
 if ($LastUserResponse -eq 1) {
-    echo "`nO BirdoApp NÃO foi instalado. Encerrando..."
+    echo "`nO Academia Note NÃO foi instalado. Encerrando..."
     exit
 }
 
@@ -388,7 +386,7 @@ if(Test-Path $birdoTemp){
 }
 
 New-Item -Path "$env:TEMP" -Name "BirdoApp" -ItemType "directory" > $null
-$returnedObject = Get-GitRelease $BIRDOAPP_REPO $birdoTemp "Source" "FILE_MATCH_NOT_USED" "Baixando arquivos do repositório do BirdoApp..." "Arquivos do BirdoApp baixados!"
+$returnedObject = Get-GitRelease $ACADEMIANOTE_REPO $birdoTemp "Source" "FILE_MATCH_NOT_USED" "Baixando arquivos do repositório do BirdoApp..." "Arquivos do BirdoApp baixados!"
 $gitpath = $returnedObject[$returnedObject.length - 1]
 [IO.Compression.ZipFile]::ExtractToDirectory($gitpath, $birdoTemp)
 Remove-Item -Path "$gitpath" -Force
@@ -433,7 +431,7 @@ Write-Host "⠷ Criando atalho na área de trabalho..."
 
 Set-Location $currentFolder
 $birdoapp = "$env:APPDATA/BirdoApp"
-Install-Shortcut -ShortcutName "BirdoApp" -Arguments "main.py" -WorkingDir "$birdoapp" -PythonPath "$birdoapp/venv/Scripts/python.exe" -Icon "$birdoapp/app/icons/logo.ico"
+Install-Shortcut -ShortcutName "Academia Note" -Arguments "main.py" -WorkingDir "$birdoapp" -PythonPath "$birdoapp/venv/Scripts/python.exe" -Icon "$birdoapp/app/icons/logo.ico"
 & $gum style --border=double --align=center --padding="1 4" "Atalho criado!"
 
 mv $gum $env:appdata\BirdoApp\extra\
