@@ -297,7 +297,7 @@ if(Test-Path $birdoApp){
 
 }
 
-$termsS = (irm -Uri https://raw.githubusercontent.com/otmbneto/BirdoApp/refs/heads/config_proj3/TERMS.md).replace("**", "")
+$termsS = (irm -Uri https://raw.githubusercontent.com/Instituto-Split/AcademiaNote/refs/heads/main/TERMS.md).replace("**", "")
 $termsA = $termsS.split("`n")
 
 $H = $Host.UI.RawUI.WindowSize.Width - 2
